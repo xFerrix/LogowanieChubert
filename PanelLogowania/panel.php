@@ -7,6 +7,7 @@
     <title>Document</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
         html,
         body {
             font-family: 'Roboto';
@@ -32,17 +33,23 @@
 
         nav {
             display: flex;
-            justify-content: center;
+            padding-left: 730px;
             height: 15vh;
             width: 85vw;
             border-bottom: black solid 3px;
         }
-        nav h1{
+
+        nav h1 {
             margin-top: 50px;
         }
+
         main {
+            padding-left: 40px;
             width: 85vw;
             height: 62vh;
+            display: flex;
+            overflow-y: auto;
+            flex-wrap: wrap;
         }
 
         footer {
@@ -79,34 +86,59 @@
             border-radius: 7px;
             width: 300px;
         }
+
+        .art {
+            width: 270px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            border-radius: 15px;
+            background-color: #279AF1;
+        }
+
+        .art img {
+            width: 150px;
+            height: 150px;
+        }
+        .dodaj{
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .bottom{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .art button{
+            border: none;
+            border-radius: 5px;
+            margin: 2px;
+        }
+        nav a{
+            margin-top: 50px;
+            margin-left: 700px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="left">
+        <ul>
+        <a href="panel.php"><li>Artykuly</li></a>
+        <a href="dodajartykul.php"><li>Dodaj artykuł</li></a>
+        </ul>
     </div>
     <div class="right">
         <nav>
-            <a href="index.php">Wyloguj sie</a>
             <h1>Artykuly</h1>
+            <a href="index.php">Wyloguj sie</a>
         </nav>
         <main>
             <div class="dodaj">
-                <?php
-        echo "
-    <form method='post'>
-         <input type=\"text\" name=\"tytul\" id=\"tytul\" placeholder='Tytul'><br> <br>
-        <input type=\"text\" name=\"opis\" id=\"opis\" placeholder='Opis'> <br> <br> 
-        <input type=\"text\" name='img' id='img' placeholder='Link do zdjecia'> <br> <br>
-        <button type=\"submit\">Przeslij do bazy</button>
-    </form>
-            "; 
-
-        ?>
             </div>
-
-
             <?php
 $server = 'localhost';
 $baza = 'panellogowania';
@@ -116,49 +148,23 @@ $polaczenie = new mysqli($server, $user, $password, $baza);
 if(mysqli_connect_error() != 0){
     echo 'blad polaczenia do bazy danych'.mysqli_connect_error();
 }else{
-    echo "<script type='text/javascript'>alert('Poloczenie do bazy danych powiodlo sie.');</script>";
 };
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tytul = $_POST['tytul'];
-    $opis = $_POST['opis'];
-    $img = $_POST['img'];
-    if($tytul != "" && $opis != "" && $img != ""){
-    $sql = "INSERT INTO artykuly (Tytul, Opis, zdjecie) VALUES ('$tytul', '$opis', '$img')"; 
-
-    if (mysqli_query($polaczenie, $sql)) {
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
-    } else {
-        echo "Error: " . mysqli_error($polaczenie);
-    }
-
-if (mysqli_query($polaczenie, $sql)) {
-     echo "";
-} else {
-     echo "Error: " . $sql . "<br>" . mysqli_error($polaczenie);
-}
-    }
-}
 $sql2 = "SELECT * from artykuly";
 
 $result = mysqli_query($polaczenie, $sql2);
 echo "<br> <br>";
 while ($row = mysqli_fetch_assoc($result)) {
+    echo "<div class = \"art\">";
     echo "Tytul: " . $row['Tytul'] . "<br>";
     echo "Opis: " . $row['Opis'] . "<br>";
     echo "<img src=\"" . $row['zdjecie'] ."\"> <br>";
+    echo "<button> edytuj </button> <button> usun </button><br> <br>";
+    echo "</div>";
 }
-
-
 mysqli_close($polaczenie);
 ?>
-
-
-
         </main>
         <footer>
-
         </footer>
     </div>
 
