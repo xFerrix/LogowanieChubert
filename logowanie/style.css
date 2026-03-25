@@ -1,0 +1,60 @@
+html, body{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+            background-color:rgb(255, 192, 252);
+        }
+        #login{
+            width: 200px;
+            height: 50px;   
+            transition: .3s;
+            text-align: center;
+            border-radius: 10px;
+            -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+-moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            
+        }
+        #pass{
+             width: 200px;
+            height: 50px;   
+            transition: .3s;
+            border-radius: 10px;
+            text-align: center;
+            -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+-moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        }
+        #login:hover{
+            transition: 1s;
+            scale: 1.1;
+        }
+        form{
+            padding: 50px;
+            background-color:rgb(111, 100, 108);
+            border-radius: 20px;
+            -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+-moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        }
+        #pass:hover{
+            transition: 1s;
+            scale: 1.1;
+        }
+        #btn{
+            width: 200px;
+            transition: 1s;
+            border-radius: 20px;
+        }
+        #btn:hover{
+            transition: 60s;
+            scale: 1000;
+            rotate: 999999999999999999999999999999deg;
+        }
