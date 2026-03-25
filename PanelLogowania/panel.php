@@ -120,6 +120,17 @@
             margin-top: 50px;
             margin-left: 700px;
         }
+        .kolo{
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: black;
+            color: white;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -153,14 +164,29 @@ $sql2 = "SELECT * from artykuly";
 
 $result = mysqli_query($polaczenie, $sql2);
 echo "<br> <br>";
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<div class = \"art\">";
-    echo "Tytul: " . $row['Tytul'] . "<br>";
-    echo "Opis: " . $row['Opis'] . "<br>";
-    echo "<img src=\"" . $row['zdjecie'] ."\"> <br>";
-    echo "<button> edytuj </button> <button> usun </button><br> <br>";
-    echo "</div>";
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+    $id = $_POST['id'];
+    $usun = "DELETE FROM artykuly WHERE id = $id";
+
+    if (mysqli_query($polaczenie, $usun)) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        echo "Error: " . mysqli_error($polaczenie);
+    }
 }
+while ($row = mysqli_fetch_assoc($result)) {
+   echo "<form method='post'>";
+echo "<input type='hidden' name='id' value='".$row['id']."'>";
+echo "<div class='art'>";
+echo "Tytul: " . $row['Tytul'] . "<br>";
+echo "Opis: " . $row['Opis'] . "<br>";
+echo "<img src=\"" . $row['zdjecie'] ."\"> <br>";
+echo "<button type='submit' name='delete'>usun</button>";
+echo "</div>";
+echo "</form>";
+}
+
 mysqli_close($polaczenie);
 ?>
         </main>
