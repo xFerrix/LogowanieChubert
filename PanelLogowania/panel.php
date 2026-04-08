@@ -120,17 +120,6 @@
             margin-top: 50px;
             margin-left: 700px;
         }
-        .kolo{
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
-            background-color: black;
-            color: white;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
     </style>
 </head>
 
@@ -175,6 +164,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
         echo "Error: " . mysqli_error($polaczenie);
     }
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
+    $id = $_POST['id'];
+    session_start();
+    $_SESSION['formdata'] = $_POST['id'];
+    header("Location: edytuj.php");
+}
 while ($row = mysqli_fetch_assoc($result)) {
    echo "<form method='post'>";
 echo "<input type='hidden' name='id' value='".$row['id']."'>";
@@ -183,6 +178,7 @@ echo "Tytul: " . $row['Tytul'] . "<br>";
 echo "Opis: " . $row['Opis'] . "<br>";
 echo "<img src=\"" . $row['zdjecie'] ."\"> <br>";
 echo "<button type='submit' name='delete'>usun</button>";
+echo "<button type='submit' name='edit'>edytuj</button>";
 echo "</div>";
 echo "</form>";
 }
@@ -196,4 +192,4 @@ mysqli_close($polaczenie);
 
 </body>
 
-</html>
+</html> 
