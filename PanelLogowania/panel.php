@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
         html,
@@ -120,6 +120,29 @@
             margin-top: 50px;
             margin-left: 700px;
         }
+        .kolo{
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: black;
+            color: white;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .left ul a {
+            text-decoration: none;
+            color: black;
+            font-size: x-large;
+        }
+        .left ul{
+            list-style: none;
+        }
+        .Guziki{
+            display: flex;
+            flex-direction: row;
+        }
     </style>
 </head>
 
@@ -177,8 +200,10 @@ echo "<div class='art'>";
 echo "Tytul: " . $row['Tytul'] . "<br>";
 echo "Opis: " . $row['Opis'] . "<br>";
 echo "<img src=\"" . $row['zdjecie'] ."\"> <br>";
-echo "<button type='submit' name='delete'>usun</button>";
-echo "<button type='submit' name='edit'>edytuj</button>";
+echo "<div class=\"Guziki\">";
+echo "<button type='submit' name='delete'>Usun</button>";
+echo "<button type='submit' name='edit'>Edytuj</button>";
+echo "</div>";
 echo "</div>";
 echo "</form>";
 }
