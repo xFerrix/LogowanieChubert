@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-        <style>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
         html,
@@ -132,18 +133,50 @@
         }
     </style>
 </head>
+
 <body>
+
+    <div class="left">
+        <ul>
+        <a href="paneln.php"><li>Artykuly</li></a>
+        </ul>
+    </div>
     <div class="right">
         <nav>
-            <a href="logowanie.php">Zaloguj sie</a>
+            <h1>Artykuly</h1>
+            <a href="logowanie.php"><div class="kolo">Log in</div></a>
         </nav>
         <main>
+            <div class="dodaj">
+            </div>
+            <?php
+$server = 'localhost';
+$baza = 'panellogowania';
+$user = 'root';
+$password = '';
+$polaczenie = new mysqli($server, $user, $password, $baza);
+if(mysqli_connect_error() != 0){
+    echo 'blad polaczenia do bazy danych'.mysqli_connect_error();
+}else{
+};
+$sql2 = "SELECT * from artykuly";
 
+$result = mysqli_query($polaczenie, $sql2);
+echo "<br> <br>";
+while ($row = mysqli_fetch_assoc($result)) {
+    echo "<div class = \"art\">";
+    echo "Tytul: " . $row['Tytul'] . "<br>";
+    echo "Opis: " . $row['Opis'] . "<br>";
+    echo "<img src=\"" . $row['zdjecie'] ."\"> <br>";
+    echo "</div>";
+}
+mysqli_close($polaczenie);
+?>
         </main>
         <footer>
-
         </footer>
     </div>
 
 </body>
+
 </html>

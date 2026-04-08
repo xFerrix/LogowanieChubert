@@ -131,6 +131,14 @@
             align-items: center;
             justify-content: center;
         }
+        .left ul a {
+            text-decoration: none;
+            color: black;
+            font-size: x-large;
+        }
+        .left ul{
+            list-style: none;
+        }
     </style>
 </head>
 
